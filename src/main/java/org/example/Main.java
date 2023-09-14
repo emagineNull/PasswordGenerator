@@ -97,7 +97,7 @@ public class Main implements ActionListener {
         }
 
         String s = e.getActionCommand();
-        if (s == "Generate Password") {
+        if (s.equals("Generate Password")) {
             try {
             spinner.commitEdit();
             } catch ( java.text.ParseException p ) { }
@@ -105,7 +105,7 @@ public class Main implements ActionListener {
 
             textField.setText(PasswordGenerator.GenPassword(length, upperCase, lowerCase, numbers, symbols));
         }
-        else if (s == "Copy") {
+        else if (s.equals("Copy")) {
             String str = textField.getText();
             Clipboard clip = Toolkit.getDefaultToolkit()
                     .getSystemClipboard();
