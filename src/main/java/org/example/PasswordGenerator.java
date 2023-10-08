@@ -4,22 +4,20 @@ import java.util.Random;
 
 public class PasswordGenerator {
     private static Random random = new Random();
-    private static int leftLimit = 33;
-    private static int rightLimit = 126;
+    private static final int leftLimit = 33;
+    private static final int rightLimit = 126;
+
+    private static final String alphabet = "abcdefghijklmnopqrstuvxyz";
+    private static final String nums = "0123456789";
 
     public static String GenPassword(int n, boolean up, boolean low, boolean num, boolean sym) {
-        String AlphaNumericString = "";
         StringBuilder sb = new StringBuilder(n);
 
         if (up && low && num && sym) {
             return StrGen(n);
         }
         else if (up && low && num) {
-            AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    + "0123456789"
-                    + "abcdefghijklmnopqrstuvxyz";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet + nums + alphabet.toUpperCase());
         }
         else if (up && low && sym) { // 48 57
             return StrGen(n, 48, 57);
@@ -31,25 +29,16 @@ public class PasswordGenerator {
             return StrGen(n, 97, 122);
         }
         else if (up && low) {
-            AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    + "abcdefghijklmnopqrstuvxyz";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet + alphabet.toUpperCase());
         }
         else if (up && num) {
-            AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    + "0123456789";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet.toUpperCase() + nums);
         }
         else if (up && sym) { // 97 122 48 57
             return StrGen(n, 97, 122, 48, 57);
         }
         else if (low && num) {
-            AlphaNumericString = "abcdefghijklmnopqrstuvxyz"
-                    + "0123456789";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet + nums);
         }
         else if (low && sym) { // 65 90 48 57
             return StrGen(n, 65, 90, 48, 57);
@@ -58,15 +47,10 @@ public class PasswordGenerator {
             return StrGen(n, 97, 122, 65, 90);
         }
         else if (up) {
-            //sb = new StringBuilder(n);
-            AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet.toUpperCase());
         }
         else if (low) {
-            AlphaNumericString = "abcdefghijklmnopqrstuvxyz";
-
-            return AlphaNumStrGen(sb, n, AlphaNumericString);
+            return AlphaNumStrGen(sb, n, alphabet);
         }
         else {
             return "";

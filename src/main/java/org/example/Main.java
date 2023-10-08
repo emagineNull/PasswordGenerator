@@ -56,7 +56,8 @@ public class Main implements ActionListener {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Password Generator");
-        frame.add(label);;
+        frame.add(label);
+
         frame.add(label1);
         frame.add(c1);
         frame.add(c2);
